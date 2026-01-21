@@ -4,8 +4,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/blackbox-test-designer/' : '/',
+export default defineConfig({
+  base: '/blackbox-test-designer/',
   build: {
     sourcemap: 'hidden',
   },
@@ -28,4 +28,4 @@ export default defineConfig(({ command }) => ({
     }), 
     tsconfigPaths()
   ],
-}))
+})

@@ -1,57 +1,76 @@
-# React + TypeScript + Vite
+# Blackbox Test Designer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/react-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/typescript-5-blue?logo=typescript)
+![Vite](https://img.shields.io/badge/vite-6-purple?logo=vite)
+![Vitest](https://img.shields.io/badge/tested%20with-vitest-6E9F18?logo=vitest)
 
-Currently, two official plugins are available:
+Ferramenta web para apoio ao design de casos de teste usando **técnicas de teste caixa-preta**. Através de um wizard interativo, o usuário seleciona a técnica, configura os parâmetros e exporta os casos gerados em múltiplos formatos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- Wizard guiado em etapas (seleção de técnica → configuração → geração → exportação)
+- Técnicas suportadas: Partição por equivalência, Análise de valor limite, Tabela de decisão e outras
+- Exportação dos casos de teste em **CSV**, **TXT**, **XLSX** e **JSON**
+- Interface responsiva com Tailwind CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Pré-requisitos
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js 18+
+- npm
+
+## Instalação e uso
+
+```bash
+git clone https://github.com/Edcleryton/blackbox-test-designer.git
+cd blackbox-test-designer
+npm install
+
+# Servidor de desenvolvimento
+npm run dev
+
+# Build de produção
+npm run build
+
+# Pré-visualizar build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Testes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Executar testes unitários
+npm test
 
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Verificação de tipos TypeScript
+npm run check
 ```
+
+**Resultado: 5/5 testes passando** (engine de geração + exporters).
+
+## Estrutura do projeto
+
+```
+blackbox-test-designer/
+├── src/
+│   ├── core/
+│   │   └── catalog.ts         # Catálogo de técnicas e tipos
+│   ├── components/
+│   │   ├── ui/                # Componentes base (Button, Card, Input...)
+│   │   └── wizard/            # Etapas do wizard (TechniquePicker, CaseTable...)
+│   ├── pages/
+│   │   └── Home.tsx           # Página principal com o wizard completo
+│   ├── utils/
+│   │   └── export/            # Exportadores (CSV, TXT, XLSX, JSON)
+│   └── stores/                # Estado global (Zustand)
+├── public/
+└── vite.config.ts
+```
+
+## Licença
+
+MIT
+
+## Autor
+
+[Edcleryton Silva](https://github.com/Edcleryton)
